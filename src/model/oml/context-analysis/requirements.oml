@@ -1,0 +1,43 @@
+
+@dc:title "Agricultural Satellite Mission Requirements"
+@dc:description "Defines the mission requirements of the Egypt Agricultural Earth Observation Satellite."
+
+description <https://context-analysis/requirements#> as requirements {
+    uses <http://purl.org/dc/elements/1.1/> as dc
+    uses <https://www.modelware.io/sierra/base#> as base
+    uses <https://www.modelware.io/sierra/stakeholder#> as stakeholder
+    uses <https://www.modelware.io/sierra/requirements#> as req
+    uses <http://www.w3.org/2000/01/rdf-schema#> as rdfs
+
+    extends <https://context-analysis/stakeholder#> as stakeholders
+
+    @rdfs:label "Mission Lifetime Requirement"
+    instance REQ_MissionLifetime : stakeholder:Requirement [
+        base:description "The satellite shall operate for at least 5 years."
+        req:satisfies stakeholders:MissionRequirementsSatisfaction
+    ]
+
+    @rdfs:label "Maximum Satellite Mass Requirement"
+    instance REQ_MaximumMass : stakeholder:Requirement [
+        base:description "The satellite shall have a mass of less than 350 kg."
+        req:satisfies stakeholders:MissionRequirementsSatisfaction
+    ]
+
+    @rdfs:label "Sun-Synchronous Orbit Requirement"
+    instance REQ_SunSynchronousOrbit : stakeholder:Requirement [
+        base:description "The satellite shall operate in Sun-Synchronous Low Earth Orbit."
+        req:satisfies stakeholders:MissionRequirementsSatisfaction
+    ]
+
+    @rdfs:label "Revisit Time Requirement"
+    instance REQ_RevisitTime : stakeholder:Requirement [
+        base:description "The satellite revisit time shall be less than 5 days."
+        req:satisfies stakeholders:MissionRequirementsSatisfaction
+    ]
+
+    @rdfs:label "RGB Imaging Requirement"
+    instance REQ_RGBImaging : stakeholder:Requirement [
+        base:description "The satellite shall capture RGB images covering the Egyptian territory."
+        req:satisfies stakeholders:MissionRequirementsSatisfaction
+    ]
+}

@@ -1,0 +1,32 @@
+
+@dc:title "Entity Vocabulary"
+@dc:description "Defines entities, domain experts and engineering disciplines involved in the concurrent design of the agricultural Earth observation satellite mission."
+
+vocabulary <https://www.modelware.io/sierra/entity#> as ^entity {
+    extends <http://purl.org/dc/elements/1.1/> as dc
+    extends <https://www.modelware.io/sierra/base#> as base
+    extends <https://www.modelware.io/sierra/mission#> as mission
+
+    @dc:description "An entity participating in or supporting the concurrent design process."
+    concept Entity < base:Element
+
+    @dc:description "A technical expert contributing knowledge and analysis to a specific engineering discipline."
+    concept DomainExpert < Entity
+
+    @dc:description "An engineering discipline involved in the concurrent design process, such as Power, Thermal, AOCS or Orbit."
+    concept Discipline < base:Element
+
+    @dc:description "Indicates the engineering discipline in which a domain expert has expertise."
+    relation hasExpertiseIn [
+        from DomainExpert
+        to Discipline
+        reverse hasDomainExpert
+    ]
+
+    @dc:description "Indicates that a mission capability is assigned to a responsible entity."
+    relation isAssignedTo [
+        from mission:Capability
+        to Entity
+        reverse hasCapability
+    ]
+}

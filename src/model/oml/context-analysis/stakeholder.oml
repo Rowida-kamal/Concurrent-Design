@@ -1,0 +1,94 @@
+
+@dc:title "Concurrent Design Stakeholders and Concerns"
+@dc:description "Defines the stakeholders involved in the concurrent design project and the concerns they express."
+
+description <https://context-analysis/stakeholder#> as stakeholders {
+    uses <http://purl.org/dc/elements/1.1/> as dc
+    uses <https://www.modelware.io/sierra/base#> as base
+    uses <https://www.modelware.io/sierra/stakeholder#> as stakeholder
+    uses <http://www.w3.org/2000/01/rdf-schema#> as rdfs
+
+    @rdfs:label "Project Manager"
+    instance ProjectManager : stakeholder:Stakeholder [
+        base:description "Needs to know whether the concept is feasible within cost and schedule, including risks and open trade-offs."
+        base:category "Management"
+    ]
+
+    @rdfs:label "System Engineer"
+    instance SystemEngineer : stakeholder:Stakeholder [
+        base:description "Needs requirement traceability, budget status, change impact, and design consistency and completeness."
+        base:category "Engineering"
+    ]
+
+    @rdfs:label "Discipline Engineers"
+    instance DisciplineEngineers : stakeholder:Stakeholder [
+        base:description "Need to know their required inputs, the users of their outputs, dependencies, and assumptions affecting other disciplines."
+        base:category "Engineering"
+    ]
+
+    @rdfs:label "Customer"
+    instance Customer : stakeholder:Stakeholder [
+        base:description "Needs to know whether mission requirements are met and what design trade-offs have been made."
+        base:category "Customer"
+    ]
+
+    @rdfs:label "Launch Provider"
+    instance LaunchProvider : stakeholder:Stakeholder [
+        base:description "Needs to know interface constraints including mass, volume, and data rate."
+        base:category "External"
+    ]
+
+    @rdfs:label "Ground Segment Operators"
+    instance GroundSegmentOperators : stakeholder:Stakeholder [
+        base:description "Need to know interface constraints and ground station contact time."
+        base:category "Operations"
+    ]
+
+    @rdfs:label "IT Support Team"
+    instance ITSupportTeam : stakeholder:Stakeholder [
+        base:description "Needs to know who will operate, maintain, and host the concurrent design model."
+        base:category "Support"
+    ]
+
+    @rdfs:label "Project Feasibility"
+    instance ProjectFeasibility : stakeholder:Concern [
+        base:description "Evaluates whether the project concept is feasible within cost and schedule constraints."
+        stakeholder:isExpressedBy ProjectManager
+    ]
+
+    @rdfs:label "Requirement Traceability"
+    instance RequirementTraceability : stakeholder:Concern [
+        base:description "Ensures that system requirements can be traced and their implementation impact can be understood."
+        stakeholder:isExpressedBy SystemEngineer
+    ]
+
+    @rdfs:label "Discipline Coordination"
+    instance DisciplineCoordination : stakeholder:Concern [
+        base:description "Ensures coordination of inputs, outputs, dependencies, and assumptions across engineering disciplines."
+        stakeholder:isExpressedBy DisciplineEngineers
+    ]
+
+    @rdfs:label "Mission Requirements Satisfaction"
+    instance MissionRequirementsSatisfaction : stakeholder:Concern [
+        base:description "Checks whether the mission requirements are satisfied and design trade-offs are understood."
+        stakeholder:isExpressedBy Customer
+    ]
+
+    @rdfs:label "Launch Interface Constraints"
+    instance LaunchInterfaceConstraints : stakeholder:Concern [
+        base:description "Addresses launch interface constraints such as mass, volume, and data rate."
+        stakeholder:isExpressedBy LaunchProvider
+    ]
+
+    @rdfs:label "Ground Segment Interfaces"
+    instance GroundSegmentInterfaces : stakeholder:Concern [
+        base:description "Addresses ground segment interfaces and ground station contact time."
+        stakeholder:isExpressedBy GroundSegmentOperators
+    ]
+
+    @rdfs:label "Model Infrastructure Availability"
+    instance ModelInfrastructureAvailability : stakeholder:Concern [
+        base:description "Ensures that the infrastructure needed to operate and maintain the concurrent design model is available."
+        stakeholder:isExpressedBy ITSupportTeam
+    ]
+}

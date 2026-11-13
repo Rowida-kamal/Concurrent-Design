@@ -1,0 +1,28 @@
+
+@dc:title "Requirements Vocabulary"
+@dc:description "Defines requirements, their relationships to stakeholder concerns, and verification activities."
+
+vocabulary <https://www.modelware.io/sierra/requirements#> as requirements {
+    extends <http://purl.org/dc/elements/1.1/> as dc
+    extends <https://www.modelware.io/sierra/stakeholder#> as stakeholder
+
+    @dc:description "Indicates that a Requirement addresses a Concern."
+    relation satisfies [
+        from stakeholder:Requirement
+        to stakeholder:Concern
+        reverse isSatisfiedBy
+    ]
+
+    @dc:description "Indicates that a Requirement is verified by a Verification Activity."
+    relation verifiedBy [
+        from stakeholder:Requirement
+        to stakeholder:VerificationActivity
+        reverse verifies
+    ]
+        @dc:description "Indicates that a requirement is derived from another requirement."
+    relation derivedFrom [
+        from stakeholder:Requirement
+        to stakeholder:Requirement
+        reverse hasDerivedRequirement
+    ]
+}

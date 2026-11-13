@@ -1,0 +1,55 @@
+@dc:title "Concurrent Design Session Vocabulary"
+@dc:description "Defines concepts and relations for concurrent design sessions, participants, agenda items, decisions and assumptions."
+
+vocabulary <https://www.modelware.io/sierra/session#> as session {
+    extends <http://purl.org/dc/elements/1.1/> as dc
+    extends <https://www.modelware.io/sierra/base#> as base
+    extends <https://www.modelware.io/sierra/entity#> as ^entity
+    @dc:description "A collaborative engineering session in which experts work together on mission design."
+    concept Session < base:Element
+
+    @dc:description "A person or expePrt participating in a concurrent design session."
+    concept Participant < entity:Entity
+
+    @dc:description "A topic discussed during a concurrent design session."
+    concept AgendaItem < base:Element
+    
+@dc:description "An engineering activity performed during a concurrent design session."
+concept SessionActivity < base:Element
+
+@dc:description "An exchange of engineering data between participants during a concurrent design session."
+concept DataExchange < base:Element
+    @dc:description "A decision agreed upon during a concurrent design session."
+    concept Decision < base:Element
+
+    @dc:description "An assumption used or agreed upon during a concurrent design session."
+    concept Assumption < base:Element
+
+    @dc:description "Indicates that a participant takes part in a session."
+    relation hasParticipant [
+        from Session
+        to Participant
+        reverse participatesIn
+    ]
+
+    @dc:description "Indicates that an agenda item is discussed during a session."
+    relation discusses [
+        from Session
+        to AgendaItem
+        reverse isDiscussedIn
+    ]
+
+    @dc:description "Indicates that a decision results from a session."
+    relation producesDecision [
+        from Session
+        to Decision
+        reverse isProducedBy
+    ]
+
+    @dc:description "Indicates that an assumption is considered during a session."
+    relation considers [
+        from Session
+        to Assumption
+        reverse isConsideredIn
+    ]
+}

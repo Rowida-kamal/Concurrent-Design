@@ -1,0 +1,118 @@
+
+@dc:title "Agricultural Satellite Components"
+@dc:description "Defines the satellite system, its subsystems and physical components."
+
+description <https://context-analysis/components#> as components {
+    uses <http://purl.org/dc/elements/1.1/> as dc
+    uses <http://www.w3.org/2000/01/rdf-schema#> as rdfs
+    uses <https://www.modelware.io/sierra/base#> as base
+    uses <https://www.modelware.io/sierra/component#> as component
+
+    @rdfs:label "Egypt Agricultural Earth Observation Satellite"
+    instance AgriculturalSatellite : component:Component [
+         
+        base:contains PayloadSubsystem
+        base:contains OBDHSubsystem
+        base:contains PowerSubsystem
+        base:contains CommunicationSubsystem
+        base:contains AOCSSubsystem
+    ]
+
+    @rdfs:label "Payload Subsystem"
+    instance PayloadSubsystem : component:Subsystem
+
+    @rdfs:label "On Board Data Handling Subsystem"
+    instance OBDHSubsystem : component:Subsystem
+
+    @rdfs:label "Electrical Power Subsystem"
+    instance PowerSubsystem : component:Subsystem
+
+    @rdfs:label "Communication Subsystem"
+    instance CommunicationSubsystem : component:Subsystem
+
+    @rdfs:label "Attitude and Orbit Control Subsystem"
+    instance AOCSSubsystem : component:Subsystem
+
+    @rdfs:label "Multispectral Camera"
+    instance MultispectralCamera : component:PhysicalPart [
+        component:belongsToSubsystem PayloadSubsystem
+        component:hasPort CameraDataOut
+      ]
+
+    @rdfs:label "Payload Data Processor"
+    instance PayloadDataProcessor : component:PhysicalPart [
+        component:belongsToSubsystem PayloadSubsystem
+        component:hasPort ProcessorDataIn
+    component:hasPort ProcessorDataOut
+    ]
+
+    @rdfs:label "On Board Computer"
+instance OnBoardComputer : component:PhysicalPart [
+    component:belongsToSubsystem OBDHSubsystem
+    component:hasPort OBCDataIn
+    component:hasPort OBCDataOut
+]
+
+    @rdfs:label "Battery Unit"
+    instance BatteryUnit : component:PhysicalPart [
+        component:belongsToSubsystem PowerSubsystem
+    ]
+
+    @rdfs:label "Solar Array"
+    instance SolarArray : component:PhysicalPart [
+        component:belongsToSubsystem PowerSubsystem
+    ]
+
+    @rdfs:label "Communication Antenna"
+    instance CommunicationAntenna : component:PhysicalPart [
+        component:belongsToSubsystem CommunicationSubsystem
+    ]
+
+    @rdfs:label "Transceiver"
+    instance Transceiver : component:PhysicalPart [
+        component:belongsToSubsystem CommunicationSubsystem
+            component:hasPort CommunicationDataIn
+
+    ]
+
+    @rdfs:label "Star Tracker"
+    instance StarTracker : component:PhysicalPart [
+        component:belongsToSubsystem AOCSSubsystem
+    ]
+
+    @rdfs:label "Reaction Wheel"
+    instance ReactionWheel : component:PhysicalPart [
+        component:belongsToSubsystem AOCSSubsystem
+    ]
+    
+    // Camera output
+    instance CameraDataOut : component:Port [
+    component:direction "Out"
+    component:connectedTo ProcessorDataIn
+]
+
+    // Payload processor input and output
+    instance ProcessorDataIn : component:Port [
+        component:direction "In"
+    ]
+
+    instance ProcessorDataOut : component:Port [
+        component:direction "Out"
+    ]
+
+    // On-board computer input
+    instance OBCDataIn : component:Port [
+        component:direction "In"
+    ]
+    instance OBCDataOut : component:Port [
+    component:direction "Out"
+]
+    // Communication subsystem input
+    instance CommunicationDataIn : component:Port [
+        component:direction "In"
+    ]
+
+   
+   
+
+}
