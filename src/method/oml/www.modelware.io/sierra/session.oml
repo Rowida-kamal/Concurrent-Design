@@ -1,7 +1,7 @@
 @dc:title "Concurrent Design Session Vocabulary"
 @dc:description "Defines concepts and relations for concurrent design sessions, participants, agenda items, decisions and assumptions."
 
-vocabulary <https://www.modelware.io/sierra/session#> as session {
+ vocabulary <https://www.modelware.io/sierra/session#> as session {
     extends <http://purl.org/dc/elements/1.1/> as dc
     extends <https://www.modelware.io/sierra/base#> as base
     extends <https://www.modelware.io/sierra/entity#> as ^entity
