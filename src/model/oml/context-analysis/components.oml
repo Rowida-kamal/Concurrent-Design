@@ -10,7 +10,6 @@ description <https://context-analysis/components#> as components {
 
     @rdfs:label "Egypt Agricultural Earth Observation Satellite"
     instance AgriculturalSatellite : component:Component [
-         
         base:contains PayloadSubsystem
         base:contains OBDHSubsystem
         base:contains PowerSubsystem
@@ -35,61 +34,69 @@ description <https://context-analysis/components#> as components {
 
     @rdfs:label "Multispectral Camera"
     instance MultispectralCamera : component:PhysicalPart [
+        base:description "Captures Earth observation images"
         component:belongsToSubsystem PayloadSubsystem
         component:hasPort CameraDataOut
-      ]
+    ]
 
     @rdfs:label "Payload Data Processor"
     instance PayloadDataProcessor : component:PhysicalPart [
+        base:description "Processes image data"
         component:belongsToSubsystem PayloadSubsystem
         component:hasPort ProcessorDataIn
-    component:hasPort ProcessorDataOut
+        component:hasPort ProcessorDataOut
     ]
 
     @rdfs:label "On Board Computer"
-instance OnBoardComputer : component:PhysicalPart [
-    component:belongsToSubsystem OBDHSubsystem
-    component:hasPort OBCDataIn
-    component:hasPort OBCDataOut
-]
+    instance OnBoardComputer : component:PhysicalPart [
+        base:description "Controls onboard operations"
+        component:belongsToSubsystem OBDHSubsystem
+        component:hasPort OBCDataIn
+        component:hasPort OBCDataOut
+    ]
 
     @rdfs:label "Battery Unit"
     instance BatteryUnit : component:PhysicalPart [
+        base:description "Stores electrical energy"
         component:belongsToSubsystem PowerSubsystem
     ]
 
     @rdfs:label "Solar Array"
     instance SolarArray : component:PhysicalPart [
+        base:description "Generates electrical power"
         component:belongsToSubsystem PowerSubsystem
     ]
 
     @rdfs:label "Communication Antenna"
     instance CommunicationAntenna : component:PhysicalPart [
+        base:description "Transmits and receives signals"
         component:belongsToSubsystem CommunicationSubsystem
     ]
 
     @rdfs:label "Transceiver"
     instance Transceiver : component:PhysicalPart [
+        base:description "Handles communication signals"
         component:belongsToSubsystem CommunicationSubsystem
-            component:hasPort CommunicationDataIn
-
+        component:hasPort CommunicationDataIn
     ]
 
     @rdfs:label "Star Tracker"
     instance StarTracker : component:PhysicalPart [
+        base:description "Determines satellite attitude"
         component:belongsToSubsystem AOCSSubsystem
     ]
 
     @rdfs:label "Reaction Wheel"
     instance ReactionWheel : component:PhysicalPart [
+        base:description "Controls satellite orientation"
         component:belongsToSubsystem AOCSSubsystem
     ]
-    
+
     // Camera output
     instance CameraDataOut : component:Port [
-    component:direction "Out"
-    component:connectedTo ProcessorDataIn
-]
+        component:direction "Out"
+        component:connectedTo ProcessorDataIn
+    ]
 
     // Payload processor input and output
     instance ProcessorDataIn : component:Port [
@@ -100,19 +107,17 @@ instance OnBoardComputer : component:PhysicalPart [
         component:direction "Out"
     ]
 
-    // On-board computer input
+    // On-board computer input and output
     instance OBCDataIn : component:Port [
         component:direction "In"
     ]
+
     instance OBCDataOut : component:Port [
-    component:direction "Out"
-]
+        component:direction "Out"
+    ]
+
     // Communication subsystem input
     instance CommunicationDataIn : component:Port [
         component:direction "In"
     ]
-
-   
-   
-
 }

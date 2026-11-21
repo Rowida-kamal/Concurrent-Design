@@ -13,4 +13,6 @@ vocabulary bundle <https://www.modelware.io/sierra/bundle#> as v-bundle {
     includes <https://www.modelware.io/sierra/session#>
     includes <https://www.modelware.io/sierra/state#>
     includes <https://www.modelware.io/sierra/component#>
+    // project-specific vocabulary added by this project
+    includes <https://context-analysis/method/parameters#>
 }

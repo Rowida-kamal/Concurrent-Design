@@ -4,10 +4,10 @@ oml-code:
 
 # project npm settings
 project:
-  name: "@modelware/sierra-method"
+  name: "@omniaeltayeb/concurrent-design"
   version: 0.1.0
-  title: Sierra Method
-  description: The Sierra modeling method
+  title: Concurrent Design
+  description: Concurrent design method and model of an agricultural Earth observation satellite
 
 # source folders
 sources:
@@ -25,5 +25,5 @@ pack:
 defaults:
   export: -o build/owl
   reason: -o build/owl -t
-  render: -m src/model/md -b build/web -c src/model/oml/fireforce6.github.io/mission-control/bundle.oml
+  render: -m src/model/md -b build/web -c src/model/oml/context-analysis/bundle.oml
   pack: -o build/dist

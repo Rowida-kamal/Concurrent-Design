@@ -1,0 +1,115 @@
+
+@dc:title "Agricultural Satellite Subsystem Parameters"
+@dc:description "Defines the engineering groups and the parameters they exchange during concurrent design sessions of the Egypt Agricultural Earth Observation Satellite."
+
+description <https://context-analysis/parameters#> as parameters {
+    uses <http://purl.org/dc/elements/1.1/> as dc
+    uses <http://www.w3.org/2000/01/rdf-schema#> as rdfs
+    uses <https://www.modelware.io/sierra/base#> as base
+    uses <https://www.modelware.io/sierra/entity#> as ^entity
+    uses <https://context-analysis/method/parameters#> as param
+
+    //
+    // Engineering groups (disciplines)
+    //
+
+    @rdfs:label "Mission Analysis Group"
+    instance MissionAnalysisGroup : entity:Discipline [
+        base:description "Analyzes the orbit, coverage and revisit time of the mission."
+    ]
+
+    @rdfs:label "Payload Group"
+    instance PayloadGroup : entity:Discipline [
+        base:description "Designs the multispectral camera and the payload data processing."
+    ]
+
+    @rdfs:label "Power Group"
+    instance PowerGroup : entity:Discipline [
+        base:description "Designs the power budget, battery and solar array."
+    ]
+
+    @rdfs:label "Structure Group"
+    instance StructureGroup : entity:Discipline [
+        base:description "Designs the structure and the accommodation of equipment."
+    ]
+
+    @rdfs:label "Propulsion Group"
+    instance PropulsionGroup : entity:Discipline [
+        base:description "Designs the propulsion system and the propellant budget."
+    ]
+
+    @rdfs:label "AOCS Group"
+    instance AOCSGroup : entity:Discipline [
+        base:description "Designs the attitude and orbit control subsystem."
+    ]
+
+    @rdfs:label "Communication Group"
+    instance CommunicationGroup : entity:Discipline [
+        base:description "Designs the communication subsystem and the ground links."
+    ]
+
+    @rdfs:label "OBDH Group"
+    instance OBDHGroup : entity:Discipline [
+        base:description "Designs the on-board data handling subsystem."
+    ]
+
+    //
+    // Parameters (drafted from the examples in the Subsystem Parameters pattern;
+    // values and units are left to the design sessions)
+    //
+
+    @rdfs:label "Payload Swath Width"
+    instance PayloadSwathWidth : param:Parameter [
+        base:description "Width of the camera footprint on the ground. Mission Analysis uses it to compute the revisit time."
+        param:isProvidedBy PayloadGroup
+        param:isUsedBy MissionAnalysisGroup
+    ]
+
+    @rdfs:label "Payload Power Consumption"
+    instance PayloadPowerConsumption : param:Parameter [
+        base:description "Electrical power drawn by the payload. Power uses it in the power budget."
+        param:isProvidedBy PayloadGroup
+        param:isUsedBy PowerGroup
+    ]
+
+    @rdfs:label "Payload Mass"
+    instance PayloadMass : param:Parameter [
+        base:description "Mass of the payload. Structure uses it to size the structure."
+        param:isProvidedBy PayloadGroup
+        param:isUsedBy StructureGroup
+    ]
+
+    @rdfs:label "Propulsion Power Consumption"
+    instance PropulsionPowerConsumption : param:Parameter [
+        base:description "Electrical power drawn by the propulsion system. Power uses it in the power budget."
+        param:isProvidedBy PropulsionGroup
+        param:isUsedBy PowerGroup
+    ]
+
+    @rdfs:label "Propulsion System Mass"
+    instance PropulsionSystemMass : param:Parameter [
+        base:description "Mass of the propulsion system. Structure uses it to size the structure."
+        param:isProvidedBy PropulsionGroup
+        param:isUsedBy StructureGroup
+    ]
+
+    @rdfs:label "Orbit Eclipse Duration"
+    instance OrbitEclipseDuration : param:Parameter [
+        base:description "Duration of the eclipse in each orbit. Power uses it to size the battery."
+        param:isProvidedBy MissionAnalysisGroup
+        param:isUsedBy PowerGroup
+    ]
+
+    @rdfs:label "Orbit Parameters"
+    instance OrbitParameters : param:Parameter [
+        base:description "Altitude and inclination of the Sun-synchronous orbit. Propulsion uses them as orbit requirements."
+        param:isProvidedBy MissionAnalysisGroup
+        param:isUsedBy PropulsionGroup
+    ]
+
+    @rdfs:label "Revisit Time"
+    instance RevisitTime : param:Parameter [
+        base:description "Time between two observations of the same area, computed by Mission Analysis."
+        param:isProvidedBy MissionAnalysisGroup
+    ]
+}

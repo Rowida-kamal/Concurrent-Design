@@ -1,0 +1,10 @@
+@dc:title "Context Analysis Bundle"
+@dc:description "A bundle that includes all descriptions of the Egypt Agricultural Earth Observation Satellite concurrent design project. It is the reasoning and analysis scope of the project."
+description bundle <https://context-analysis/bundle#> as d-bundle {
+    uses <http://purl.org/dc/elements/1.1/> as dc
+    uses <https://www.modelware.io/sierra/bundle#>
+    includes <https://context-analysis/stakeholder#>
+    includes <https://context-analysis/requirements#>
+    includes <https://context-analysis/components#>
+    includes <https://context-analysis/parameters#>
+}

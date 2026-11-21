@@ -1,0 +1,40 @@
+@dc:title "Subsystem Parameters Vocabulary"
+@dc:description "Defines the engineering parameters exchanged between engineering groups (disciplines) during concurrent design sessions: which group provides a parameter, which groups use it, and its value and unit."
+vocabulary <https://context-analysis/method/parameters#> as param {
+    extends <http://purl.org/dc/elements/1.1/> as dc
+    extends <http://www.w3.org/2001/XMLSchema#> as xsd
+    extends <https://www.modelware.io/sierra/entity#> as ^entity
+    extends <https://www.modelware.io/sierra/process#> as process
+
+    @dc:description "A design parameter exchanged between engineering groups, such as a swath width, a mass or a power consumption. It is recorded once; a group's inputs and outputs are derived from who provides and who uses it."
+    concept Parameter < process:DataProduct
+
+    @dc:description "The numeric value of a parameter. It is optional because a parameter can be agreed before its value is known."
+    scalar property parameterValue [
+        domain Parameter
+        range xsd:decimal
+        functional
+    ]
+
+    @dc:description "The measurement unit of a parameter value, written as a symbol such as kg, W or km."
+    scalar property parameterUnit [
+        domain Parameter
+        range xsd:string
+        functional
+    ]
+
+    @dc:description "Indicates the engineering group responsible for a parameter (the group that outputs it). A parameter has one responsible group."
+    relation isProvidedBy [
+        from Parameter
+        to entity:Discipline
+        reverse provides
+        functional
+    ]
+
+    @dc:description "Indicates an engineering group that uses a parameter as an input."
+    relation isUsedBy [
+        from Parameter
+        to entity:Discipline
+        reverse consumes
+    ]
+}
