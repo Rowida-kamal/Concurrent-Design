@@ -53,42 +53,51 @@ description <https://context-analysis/stakeholder#> as stakeholders {
     @rdfs:label "Project Feasibility"
     instance ProjectFeasibility : stakeholder:Concern [
         base:description "Evaluates whether the project concept is feasible within cost and schedule constraints."
+        base:priority "High"
+
         stakeholder:isExpressedBy ProjectManager
     ]
 
     @rdfs:label "Requirement Traceability"
     instance RequirementTraceability : stakeholder:Concern [
         base:description "Ensures that system requirements can be traced and their implementation impact can be understood."
+        base:priority "High"
         stakeholder:isExpressedBy SystemEngineer
     ]
 
     @rdfs:label "Discipline Coordination"
     instance DisciplineCoordination : stakeholder:Concern [
         base:description "Ensures coordination of inputs, outputs, dependencies, and assumptions across engineering disciplines."
+        base:priority "High"
         stakeholder:isExpressedBy DisciplineEngineers
     ]
 
     @rdfs:label "Mission Requirements Satisfaction"
     instance MissionRequirementsSatisfaction : stakeholder:Concern [
         base:description "Checks whether the mission requirements are satisfied and design trade-offs are understood."
+        base:priority "High"
         stakeholder:isExpressedBy Customer
     ]
 
     @rdfs:label "Launch Interface Constraints"
     instance LaunchInterfaceConstraints : stakeholder:Concern [
         base:description "Addresses launch interface constraints such as mass, volume, and data rate."
+        base:priority "Medium"
         stakeholder:isExpressedBy LaunchProvider
     ]
 
     @rdfs:label "Ground Segment Interfaces"
     instance GroundSegmentInterfaces : stakeholder:Concern [
         base:description "Addresses ground segment interfaces and ground station contact time."
+        base:priority "Medium"
         stakeholder:isExpressedBy GroundSegmentOperators
     ]
 
     @rdfs:label "Model Infrastructure Availability"
     instance ModelInfrastructureAvailability : stakeholder:Concern [
         base:description "Ensures that the infrastructure needed to operate and maintain the concurrent design model is available."
+        base:priority "Medium"
+
         stakeholder:isExpressedBy ITSupportTeam
     ]
 }
